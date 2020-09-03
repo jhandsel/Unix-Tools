@@ -24,6 +24,11 @@ awk '{print length}' infile > outfile
 
 ### Count number of occurrences of each line length
 ```
-awk '{print length}' infile | sort | uniq -c > outfile
+awk '{print length}' infile | sort -n | uniq -c > outfile
 ```
 Output will have columns: num_occurrences length
+
+### Find max line length in a file
+```
+awk '{print length}' infile | sort -n | tail -1
+```
