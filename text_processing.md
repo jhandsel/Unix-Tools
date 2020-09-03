@@ -1,10 +1,12 @@
-## Cat file, ignoring first line
+# Text Processing
+
+### Cat file, ignoring first line
 ```
 tail -n +2 myfile
 ```
 (start tail at line 2)
 
-## Extract colums from tsv
+### Extract colums from tsv
 Extract n'th column (1-based indexing)
 ```
 cut -f<n> infile > outfile
@@ -15,12 +17,12 @@ Extract range of columns
 cut -f<n>-<m> infile > outfile
 ```
 
-## Count length of each line in file
+### Count length of each line in file
 ```
 awk '{print length}' infile > outfile
 ```
 
-## Count number of occurrences of each line length
+### Count number of occurrences of each line length
 ```
 awk '{print length}' infile | sort | uniq -c > outfile
 ```
