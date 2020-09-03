@@ -32,3 +32,28 @@ Output will have columns: num_occurrences length
 ```
 awk '{print length}' infile | sort -n | tail -1
 ```
+
+### Sort a tsv file on a specific field
+Sort based on third column:
+```
+sort -k 3b,3 file > file.sorted
+```
+
+### Join two tsv files
+Join on first column of each file:
+```
+join -1 1 -2 1 file1 file2 > outfile
+```
+The join column should be sorted.
+
+### Find items in column of file1 but not in column of file 2
+Show lines from file 1, where items in column 1 are not found in column 1 of file 2:
+```
+join -v 1 -1 1 -2 1 file1 file2 > outfile
+```
+The compared columns must be sorted.
+
+### Randomly shuffle lines in file
+```
+shuf infile > outfile
+```
