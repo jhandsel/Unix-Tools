@@ -76,7 +76,7 @@ sed -n '25p' myfile
 ```
 For very large file (several GB), head/tail is faster:
 ```
-cat myfile | head -25 | tail -1
+head -25 myfile | tail -1
 ```
 
 ### Delete unwanted lines from file
