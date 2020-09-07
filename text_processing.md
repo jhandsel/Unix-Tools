@@ -68,3 +68,18 @@ Extract 1000 lines, shuffled
 ```
 shuf -n 1000 infile > outfile
 ```
+
+### Extract specific line from file
+Extract 25th line:
+```
+sed -n '25p' myfile
+```
+For very large file (several GB), head/tail is faster:
+```
+cat myfile | head -25 | tail -1
+```
+
+### Delete unwanted lines from file
+```
+sed '/<regex>/d' infile > outfile
+```
