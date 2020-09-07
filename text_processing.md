@@ -28,9 +28,9 @@ awk '{print length}' infile | sort -n | uniq -c > outfile
 ```
 Output will have columns: num_occurrences length
 
-### Find max line length in a file
+### Find max line length in a file (in characters)
 ```
-awk '{print length}' infile | sort -n | tail -1
+wc -L myfile
 ```
 
 ### Sort a tsv file on a specific field
