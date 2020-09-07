@@ -33,6 +33,11 @@ Output will have columns: num_occurrences length
 wc -L myfile
 ```
 
+### Combine two single-column files into tsv
+```
+paste file1 file2 > outfile
+```
+
 ### Sort a tsv file on a specific field
 Sort based on third column:
 ```
