@@ -59,6 +59,12 @@ join -v 1 -1 1 -2 1 file1 file2 > outfile
 The compared columns must be sorted.
 
 ### Randomly shuffle lines in file
+Shuffle all of file
 ```
 shuf infile > outfile
+```
+
+Extract 1000 lines, shuffled
+```
+shuf -n 1000 infile > outfile
 ```
