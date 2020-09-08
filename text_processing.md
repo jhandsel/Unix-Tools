@@ -7,14 +7,19 @@ tail -n +2 myfile
 (start tail at line 2)
 
 ### Extract colums from tsv
-Extract n'th column (1-based indexing)
+Extract 5th column (1-based indexing)
 ```
-cut -f<n> infile > outfile
+cut -f5 infile > outfile
 ```
 
-Extract range of columns
+Extract range of columns (inclusive)
 ```
-cut -f<n>-<m> infile > outfile
+cut -f5-7 infile > outfile
+```
+
+Extract set of columns
+```
+cut -f2,3,8 infile > outfile
 ```
 
 ### Count length of each line in file
