@@ -31,4 +31,3 @@ To share tensorboard on local network:
 tensorboard --logdir logs/fit --bind_all
 ```
 Tensorboard will look for logs in directory `logs/fit`
-```
