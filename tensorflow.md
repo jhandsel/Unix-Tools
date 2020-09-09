@@ -15,7 +15,7 @@ print(device_lib.list_local_devices())
 ### Tensorboard
 After the model has been compiled, add a callback to tensorboard:
 ```
-log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 model.fit(x=x_train, 
@@ -28,6 +28,6 @@ If don't want a histogram after every epoch, remove the `histogram_freq` option.
 
 To share tensorboard on local network:
 ```
-tensorboard --logdir logs/fit --bind_all
+tensorboard --logdir logs --bind_all
 ```
 Tensorboard will look for logs in directory `logs/fit`
