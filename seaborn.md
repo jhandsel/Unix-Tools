@@ -7,19 +7,31 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 ```
 
-### Plot histogram with automatic binning
+### Color Palette
+Set the color palette:
+```
+sns.set_palette('Set2')
+```
+
+View a color palette:
+```
+sns.color_palette("Set2")
+```
+
+### Plot histogram
+Basic plot:
 ```
 ax = sns.displot(my_list, binwidth=5)
 ax.set_axis_labels('<x label>', '<y label>')
 ```
 
-### Change tick interval
+Change tick interval:
 ```
 ticks_list = [0, 5, 10 ... ]
 ax.set(xticks=ticks_list)
 ```
 
-### Set figure size
+Set figure size:
 ```
 fig = plt.gcf()
 fig.set_size_inches(10,5)
