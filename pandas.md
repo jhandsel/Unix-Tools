@@ -1,3 +1,10 @@
+# Pandas
+
+### Create dataframe from lists
+```
+df = pd.DataFrame(list(zip(lst, lst2)), columns =['<name 1>', '<name 2>'])
+```
+
 ### Select subsample of dataframe
 Randomly select 100 rows
 ```
