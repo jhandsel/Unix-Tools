@@ -1,4 +1,8 @@
 # Seaborn
+Seaborn is built upon matplotlib. It has two ways of plotting:
+-Figure level (creates figure automatically)
+-Axis level (should define plot first)
+I find the subplot level is more predictable and controlable.
 
 ### Use inline with jupyter notebook
 ```
@@ -19,7 +23,26 @@ View a color palette:
 sns.color_palette("Set2")
 ```
 
-### Plot histogram
+### Plot histogram (axis level)
+Define a figure with one axis (subplot) object:
+```
+f, ax = plt.subplots(figsize=(6,5))
+```
+The `ax` object corresponds to the empty axes.
+
+Add a plot:
+```
+sns.histplot(df, x="Age", hue="Condition", multiple='stack', bins=range(10,100,10), 
+            hue_order=['stroke', 'delirium', 'misc', 'CNS/PNS'])
+```
+The `ax` object now corresponds to the histogram.
+
+Make the plot fill up the whole 6x5 area:
+```
+f.tight_layout()
+```
+
+### Plot histogram (figure level)
 Basic plot:
 ```
 ax = sns.displot(my_list, binwidth=5)
