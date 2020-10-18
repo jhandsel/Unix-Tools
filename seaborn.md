@@ -1,7 +1,7 @@
 # Seaborn
 Seaborn is built upon matplotlib. It has two ways of plotting:
--Figure level (creates figure automatically)
--Axis level (should define plot first)
+* Figure level (creates figure automatically)
+* Axis level (should define plot first)
 I find the subplot level is more predictable and controlable.
 
 ### Use inline with jupyter notebook
