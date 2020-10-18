@@ -29,14 +29,14 @@ Define a figure with one axis (subplot) object:
 ```
 f, ax = plt.subplots(figsize=(6,5))
 ```
-The `ax` object corresponds to the empty axes.
+The `ax` object is a matplotlib `AxesSubplot` instance corresponding to the empty axes.
 
 Add a plot:
 ```
 sns.histplot(df, x="Age", hue="Condition", multiple='stack', bins=range(10,100,10), 
             hue_order=['stroke', 'delirium', 'misc', 'CNS/PNS'])
 ```
-The `ax` object now corresponds to the histogram.
+The `ax` object now corresponds to the histogram (but is still a `AxesSubplot` object).
 
 Make the plot fill up the whole 6x5 area:
 ```
@@ -46,38 +46,40 @@ f.tight_layout()
 ### Plot histogram (figure level)
 Basic plot:
 ```
-ax = sns.displot(my_list, binwidth=5)
+g = sns.displot(my_list, binwidth=5)
 ```
+The `g` is a SeaBorn FacetGrid object.
 
 Specify bins:
 ```
-ax = sns.displot(my_list, bins=range(10,100,10))
+g = sns.displot(my_list, bins=range(10,100,10))
 ```
 
 Set axis title:
 ```
-ax.set_axis_labels('<x label>', '<y label>')
+g.set_axis_labels('<x label>', '<y label>')
 ```
 
 Change tick interval:
 ```
 ticks_list = [0, 5, 10 ... ]
-ax.set(xticks=ticks_list)
+g.set(xticks=ticks_list)
 ```
 
 Set figure size:
 ```
-fig.set_size_inches(10,5)
+g.fig.set_size_inches(10,5)
 ```
 
 Put legend inside plot boundaries:
 ```
-ax.fig.tight_layout()
+g.fig.tight_layout()
 ```
 
+### Get matplotlib figure/axes
 Get current axis or (if did not save to variable):
 ```
-ax = plt.gca()
 fig = plt.gcf()
+ax = plt.gca()
 ```
 The object `fig` is a matplotlib figure object.
