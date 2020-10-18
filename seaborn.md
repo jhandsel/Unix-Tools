@@ -17,12 +17,30 @@ Set the color palette:
 ```
 sns.set_palette('Set2')
 ```
-Other good palettes are 'deep', 'rocket', 'Paired', 
+Palettes to try:
+* tab10
+* deep
+* rocket
+* rocket_r (reversed)
+* Paired
+* Set2
+* viridis
+* flare
+* dark
 
 View a color palette:
 ```
 sns.color_palette("Set2")
 ```
+
+Custom color palette:
+```
+my_palette = sns.color_palette('Blues')
+my_palette.append("#FF0B04")
+```
+This has a gradation of blues with red at the end.
+You can pop or append items as you like to fit the length of 
+the palette to the plot.
 
 ### Plot histogram (axis level)
 Define a figure with one axis (subplot) object:
@@ -35,12 +53,50 @@ Add a plot:
 ```
 sns.histplot(df, x="Age", hue="Condition", multiple='stack', bins=range(10,100,10), 
             hue_order=['stroke', 'delirium', 'misc', 'CNS/PNS'])
+plt.show()
 ```
 The `ax` object now corresponds to the histogram (but is still a `AxesSubplot` object).
 
 Make the plot fill up the whole 6x5 area:
 ```
 f.tight_layout()
+```
+
+### Plot lineplot with averaging within group (axis level)
+```
+sns.lineplot(x="week",
+             y="cumulative deaths", 
+             hue='year group', 
+             palette='rocket_r', 
+             estimator='mean', 
+             ci='sd',
+             data=df)
+```
+The dataframe `df` must have columns 'week', 'cumulative deaths' and 'year group'. 
+The `hue` option determines which group is averaged over.
+
+### Reorder legend
+```
+handles, labels = ax.get_legend_handles_labels()
+order = list(range(0, len(labels)))
+order.reverse()
+plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order])
+plt.show()
+```
+
+### Turn off scientific number notation
+```
+ax.ticklabel_format(axis='y', style='plain')
+```
+
+### Add commas to y tick labels
+```
+ax.yaxis.set_major_formatter(plt.matplotlib.ticker.StrMethodFormatter('{x:,.0f}'))
+```
+
+### Change y tick intervals
+```
+ax.set_yticks(range(0, 105, 5))
 ```
 
 ### Plot histogram (figure level)
