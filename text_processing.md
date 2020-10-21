@@ -88,3 +88,8 @@ head -25 myfile | tail -1
 ```
 sed '/<regex>/d' infile > outfile
 ```
+
+### Get file's alphabet
+```
+cat myfile | awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++){chars[$(i)]=$(i);}} END{for(c in chars){print c;} }' | sort
+```
