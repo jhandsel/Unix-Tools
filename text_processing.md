@@ -93,3 +93,8 @@ sed '/<regex>/d' infile > outfile
 ```
 cat myfile | awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++){chars[$(i)]=$(i);}} END{for(c in chars){print c;} }' | sort
 ```
+
+### Sort file by line length
+```
+awk '{print length, $0}' myfile | sort -n | cut -d " " -f2- > outfile
+```
