@@ -28,3 +28,8 @@ do
 done
 ```
 NOTE: the 10th line will be in shard0
+
+### Interleave shards into a single file
+```
+paste -d '\n' shard0 shard1 shard2 > combined
+```
