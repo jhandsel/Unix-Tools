@@ -98,3 +98,18 @@ cat myfile | awk 'BEGIN{FS=""} {for(i=1;i<=NF;i++){chars[$(i)]=$(i);}} END{for(c
 ```
 awk '{print length, $0}' myfile | sort -n | cut -d " " -f2- > outfile
 ```
+
+### Split a file into shards
+For 10 shards:
+```
+for i in $(seq -w 0 9)
+do 
+  awk "NR%10==${i}" infile > shard${i}
+done
+```
+NOTE: the 10th line will be in shard0
+
+### Interleave shards into a single file
+```
+paste -d '\n' shard0 shard1 shard2 > combined
+```
