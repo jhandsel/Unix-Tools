@@ -113,3 +113,10 @@ NOTE: the 10th line will be in shard0
 ```
 paste -d '\n' shard0 shard1 shard2 > combined
 ```
+
+### Find tsv rows with missing value
+Basically searches for two tabs in a row
+```
+grep '              ' myfile
+```
+To insert tab literal in terminal, pres Ctrl+V first.
