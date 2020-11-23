@@ -1,0 +1,4 @@
+### Compress PDF
+```
+convert in.pdf -alpha off -monochrome -compress Group4 -quality 100 -resize 50% out.pdf
+```
