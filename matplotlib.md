@@ -41,6 +41,33 @@ ax.set_title("Simple Plot")
 ax.legend()  # Add a legend.
 ```
 
+## Optimize layout
+Sometimes subplots aren't the same size, or legend isn't in the right place.
+This can (sometimes) be solved by setting a tight layout after plotting:
+```
+plt.tight_layout()
+```
+
+## Specify subplot grid
+Use gridspec if want a specific size ratio between subplots.
+```
+from matplotlib import gridspec
+
+# generate some data
+x = np.arange(0, 10, 0.2)
+y = np.sin(x)
+
+# plot it
+fig = plt.figure(figsize=(8, 6)) 
+gs = gridspec.GridSpec(1, 2, width_ratios=[3, 1]) 
+ax0 = plt.subplot(gs[0])
+ax0.plot(x, y)
+ax1 = plt.subplot(gs[1])
+ax1.plot(y, x)
+
+plt.tight_layout()
+```
+
 ## Template plotting function
 ```
 def my_plotter(ax, data1, data2, param_dict):
