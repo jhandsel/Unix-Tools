@@ -68,6 +68,19 @@ ax1.plot(y, x)
 plt.tight_layout()
 ```
 
+## Global color bar
+This is a total hack, but there doesn't seem to be a better way.
+Basically create a new axes for colorbar, and set position manually.
+```
+im = ax.plot(...)
+cb_ax = fig.add_axes([1.02, 0.03, 0.03, 0.9])
+cbar = fig.colorbar(im, cax=cb_ax)
+```
+The specification:
+```
+fig.add_axes([h_pos, v_pos, h_width, v_width])
+```
+
 ## Template plotting function
 ```
 def my_plotter(ax, data1, data2, param_dict):
