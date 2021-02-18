@@ -4,9 +4,7 @@
 
 1. Download the floppy images from the Legacy PC Project from http://www.thelegacypcproject.com/software.html
 
-1. The easiest way to create an image is with virtualbox.
-
-1. Create a new virtual machine with the following settings
+1. The easiest way to create an image is with virtualbox. Create a new virtual machine with the following settings
     * Name: DOS
     * Type: Other
     * Version: DOS
