@@ -39,7 +39,6 @@ Then use RUFUS or DD to image the .img to your SD card.
 Get help for a command:
 ```
 mycommand /?
-mycommand
 help mycommand
 ```
 
