@@ -7,9 +7,9 @@
 1. The easiest way to create an image is with virtualbox.
 
 1. Create a new virtual machine with the following settings
-  * Name: DOS
-  * Type: Other
-  * Version: DOS
+    * Name: DOS
+    * Type: Other
+    * Version: DOS
 
 1. Choose the default memory drive.
 
