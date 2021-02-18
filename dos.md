@@ -35,6 +35,12 @@ Open powershell/cmd and navigate to the VirtualBox install directory.
 
 Then use RUFUS or DD to image the .img to your SD card.
 
+To use RUFUS, first umount the SD card
+```
+mountvol DRIVELETTER: /p
+```
+Then choose the .img in rufus and write to the disk
+
 ### Basic Commands
 Get help for a command:
 ```
