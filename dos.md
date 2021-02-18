@@ -2,19 +2,19 @@
 
 ### Installing DOS
 
-Download the floppy images from the Legacy PC Project
+1. Download the floppy images from the Legacy PC Project
 http://www.thelegacypcproject.com/software.html
 
 The easiest way to create an image is with virtualbox.
 
-Create a new virtual machine with the following settings
+1. Create a new virtual machine with the following settings
 Name: DOS
 Type: Other
 Version: DOS
 
-Choose the default memory drive.
+1. Choose the default memory drive.
 
-Then create a virtual hdd in VDI format, and put a fixed size smaller than 2GB.
+1. Then create a virtual hdd in VDI format, and put a fixed size smaller than 2GB.
 
 For the new virtual machine, go to Settings > Storage, click on the floppy and "insert" DOS disk 1 (downloaded separately).
 
