@@ -48,6 +48,17 @@ mycommand /?
 help mycommand
 ```
 
+Show contents of file (like UNIX cat):
+```
+type myfile
+type | more
+```
+
+Read file into pager:
+```
+more < myfile
+```
+
 ### Set Permissions
 Set read-only:
 ```
