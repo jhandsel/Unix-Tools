@@ -41,6 +41,42 @@ mountvol DRIVELETTER: /p
 ```
 Then choose the .img in rufus and write to the disk
 
+### Format a new system drive
+This is how to copy DOS over from a boot disk.
+
+Set up the partitions on drive C: with fdisk. Make the new partition active.
+
+Format and copy over system files:
+```
+format C: /s
+```
+
+Ensure the system files were copied over:
+```
+sys C:
+```
+
+Then install the master boot record:
+```
+fdisk /mbr <drive number>
+```
+You can get the drive number from `fdisk /status`.
+The computer should now be able to boot from drive C.
+
+Create a directory called `DOS` on drive C.
+```
+md DOS
+```
+
+Then go back to the root of the boot disk, and copy over all files
+```
+xcopy *.* C: /S
+```
+
+
+
+
+
 ### Basic Commands
 Get help for a command:
 ```
