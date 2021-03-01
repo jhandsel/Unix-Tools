@@ -10,7 +10,7 @@ After=network.target
 [Service]
 User=pi
 Type=forking
-ExecStart=/usr/bin/vncserver -geometry 1600x900 :1
+ExecStart=/usr/bin/vncserver -geometry 1440x900 :1
 ExecStop=/usr/bin/vncserver -kill :1
 Restart=on-failure
 RestartSec=5
