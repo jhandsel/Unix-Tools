@@ -1,5 +1,18 @@
 # Set up raspberry pi
 
+## Enable VNC
+```
+sudo raspi-config
+```
+Navigate to Interfacing Options.
+
+Scroll down and select VNC > Yes.
+
+Then start the server from the command line:
+```
+vncserver
+```
+
 ## Auto VNC
 Create file /usr/lib/systemd/system/vncserver-pi.service containing:
 ```
