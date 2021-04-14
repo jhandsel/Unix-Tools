@@ -1,5 +1,8 @@
 # Git
 
+## Workflow
+See [A successful git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+
 ## Checkout a branch from origin
 ```
 git checkout -t origin/<name of branch>
