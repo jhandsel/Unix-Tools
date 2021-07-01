@@ -120,3 +120,12 @@ Basically searches for two tabs in a row
 grep '              ' myfile
 ```
 To insert tab literal in terminal, pres Ctrl+V first.
+
+## Vim
+
+### Add space between every character
+```
+%s/\(.\)/\1 /g
+%s/ $//g
+```
+
