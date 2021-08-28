@@ -38,3 +38,8 @@ Start the daemon
 docker-machine start
 ```
 Wait for it to start the virtual box and get an IP, then use as normal.
+
+To set up a different terminal tab to connect to the virtual box, run
+```
+eval "$(docker-machine env default)" 
+```
