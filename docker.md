@@ -26,3 +26,15 @@ Test the installation
 ```
 docker run hello-world
 ```
+
+Stop the daemon when done
+```
+docker-machine stop
+```
+
+## Using Docker on mac
+Start the daemon
+```
+docker-machine start
+```
+Wait for it to start the virtual box and get an IP, then use as normal.
