@@ -1,5 +1,13 @@
 # Getting common tools to work on Apple M1
 
+### gcc compilers
+As of writing none of the stable versions of gcc in Macports will compile. The only
+version that works is gcc-devel (the current development branch). For compiling
+C code the clang compiler included in macOS works well - but when installing a port
+you must remove the gcc variant or it will first try to install gcc and fail.
+
+If gcc is really needed (eg for gfortran), it can be installed with Homebrew.
+
 ### pip + scipy
 This requires OpenBlas from Homebrew. The OpenBlas in Macports doesn't work.
 Install with:
