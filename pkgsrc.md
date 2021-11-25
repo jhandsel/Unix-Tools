@@ -90,7 +90,7 @@ SU_CMD=        ${LOCALBASE}/bin/sudo /bin/sh -c
 ## Compile packages from source
 To compile from source, use `bmake`. First find where the source is located, eg:
 ```
-find /usr/pkgsrc -name vim
+find /usr/pkgsrc -type d -name vim
 ```
 
 Then `cd` to the directory, and check the build options:
