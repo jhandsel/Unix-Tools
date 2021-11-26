@@ -90,26 +90,6 @@ SU_CMD=        ${LOCALBASE}/bin/sudo /bin/sh -c
 
 Alternatively, just point `SU_CMD` to the `sudo` that came with your distro.
 
-### Set default python version
-Add the following at the bottom of `mk.conf`:
-```
-PYTHON_VERSION_DEFAULT=39
-```
-
-Change 39 to whatever version of python you want. When you build python modules (eg pip),
-`bmake` will build for the desired version of python.
-
-It is also possible to temporarily set the version when building a module. First clean
-out any previous builds for the current package and its dependencies:
-```
-bmake clean clean-depends
-```
-
-Then install for the desired version of python:
-```
-bmake install PYTHON_VERSION_DEFAULT=27
-```
-
 ## 2. Compiling packages from source
 ### Basic compiling
 To compile from source, use `bmake`. First find where the source is located, eg:
@@ -151,7 +131,64 @@ Add the number of desired jobs to `mk.conf`:
 MAKE_JOBS=4
 ```
 
-## 3. Audit all pkgsrc software on machine
+## 3. Set up Python
+### Set default python version
+Add the following to `mk.conf`:
+```
+PYTHON_VERSION_DEFAULT=39
+```
+
+Change 39 to whatever version of python you want. When you build python modules (eg pip),
+`bmake` will build for the desired version of python.
+
+### Build a package for a different version of python
+It is possible to temporarily set the python version when building a package.
+First clean out any previous builds of package and its dependencies:
+```
+bmake clean clean-depends
+```
+
+Then install for the desired version of python:
+```
+bmake install PYTHON_VERSION_DEFAULT=27
+```
+
+### Managing alternatives
+Sometimes you want `python` to point to `python2.7` and `python3` to point
+to the desired version of Python 3.
+
+The package `pkg_alternatives` can be installed to deal with alternatives
+(eg python 3.7, python 3.8, python 3.9):
+```
+cd pkgsrc/pkgtools/pkg_alternatives
+bmake
+bmake install
+```
+
+On installation, pkg_alternatives initializes alternatives for python and 
+any other packages with alternatives defined in their source folder.
+
+You can list all packages that can be set as alternatives:
+```
+pkg_alternatives list
+```
+
+To set up specific links to different python versions:
+```
+pkg_alternatives -w manual bin/python /opt/pkg/bin/python2.7
+pkg_alternatives -w manual bin/python3 /opt/pkg/bin/python3.9
+```
+
+Alternatively, both `python` and `python3` can be set to point to the
+same version of python by using `pkg_alternatives` in group mode (the
+default):
+```
+pkg_alternatives manual python39
+```
+
+To remove all links, simply uninstall `pkg_alternatives`.
+
+## 4. Audit all pkgsrc software on machine
 ```
 pkg_admin fetch-pkg-vulnerabilities
 pkg_admin audit
