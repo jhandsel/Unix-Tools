@@ -110,13 +110,32 @@ Then install for the desired version of python:
 bmake install PYTHON_VERSION_DEFAULT=27
 ```
 
-## 2. Compile packages from source
+## 2. Compiling packages from source
+### Basic compiling
 To compile from source, use `bmake`. First find where the source is located, eg:
 ```
-find /usr/pkgsrc -type d -name vim
+find /usr/pkgsrc -type d -iname vim
 ```
 
-Then `cd` to the directory, and check the build options:
+Then `cd` to the directory, and run
+```
+bmake
+bmake install
+```
+
+### Checking dependencies
+To show a list of dependencies for the current package:
+```
+bmake show-depends
+```
+
+To pre-download the necessary files for compiling the package, including dependencies:
+```
+bmake fetch-list | sh
+```
+
+### Setting build options
+In a package's source directory:
 ```
 bmake show-options
 ```
@@ -126,24 +145,14 @@ To set options, add a line to `$PREFIX/pkg/etc/mk.conf`. Options with '-' before
 PKG_OPTIONS.vim= python -ruby
 ```
 
-To show a list of dependencies for the current package:
+### Set number of bmake jobs
+Add the number of desired jobs to `mk.conf`:
 ```
-bmake show-depends
-```
-
-(OPTIONAL) To pre-download the necessary files for compiling the package, including dependencies:
-```
-bmake fetch-list | sh
+MAKE_JOBS=4
 ```
 
-Then make the package and install:
+## 3. Audit all pkgsrc software on machine
 ```
-bmake
-bmake install
-```
-
-## Audit all pkgsrc software on machine
-```
-sudo pkg_admin fetch-pkg-vulnerabilities
+pkg_admin fetch-pkg-vulnerabilities
 pkg_admin audit
 ```
