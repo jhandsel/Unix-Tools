@@ -3,7 +3,7 @@
 Pkgsrc is a package manager from NetBSD. It provides an up-to-date repository for installing software from source. 
 Binary packages are also available as an add-on from Joyent.
 
-## Install pkgsrc on Linux/MacOS
+## 1. Install pkgsrc on Linux/MacOS
 
 ### Set prefix for duration of installation
 (The exact prefix only matters if you're planning on installing binary packages from joyent's
@@ -79,7 +79,8 @@ sudo pkg_admin fetch-pkg-vulnerabilities
 ```
 
 ### Use sudo for priviledge escalation
-To use `sudo` instead of `su` prompt when using bmake, first install pkgsrc's sudo package, and add your user to the sudoers (see sudo documentation).
+To use `sudo` instead of `su` prompt when using bmake, first install pkgsrc's sudo package,
+and add your user to the sudoers (see sudo documentation).
 Then add the following at the bottom of `$PREFIX/pkg/etc/mk.conf`:
 ```
 .if exists(${LOCALBASE}/bin/sudo)
@@ -87,7 +88,29 @@ SU_CMD=        ${LOCALBASE}/bin/sudo /bin/sh -c
 .endif
 ```
 
-## Compile packages from source
+Alternatively, just point `SU_CMD` to the `sudo` that came with your distro.
+
+### Set default python version
+Add the following at the bottom of `mk.conf`:
+```
+PYTHON_VERSION_DEFAULT=39
+```
+
+Change 39 to whatever version of python you want. When you build python modules (eg pip),
+`bmake` will build for the desired version of python.
+
+It is also possible to temporarily set the version when building a module. First clean
+out any previous builds for the current package and its dependencies:
+```
+bmake clean clean-depends
+```
+
+Then install for the desired version of python:
+```
+bmake install PYTHON_VERSION_DEFAULT=27
+```
+
+## 2. Compile packages from source
 To compile from source, use `bmake`. First find where the source is located, eg:
 ```
 find /usr/pkgsrc -type d -name vim
