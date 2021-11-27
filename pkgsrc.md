@@ -141,10 +141,6 @@ PYTHON_VERSION_DEFAULT=39
 Change 39 to whatever version of python you want. When you build python modules (eg pip),
 `bmake` will build for the desired version of python.
 
-### py-readline
-If you want to be able to navigate the python CLI with the arrow keys, be sure to
-install py-readline.
-
 ### Build a package for a different version of python
 It is possible to temporarily set the python version when building a package.
 First clean out any previous builds of package and its dependencies:
@@ -191,6 +187,15 @@ pkg_alternatives manual python39
 ```
 
 To remove all links, simply uninstall `pkg_alternatives`.
+
+### Python command line
+If you want to be able to navigate the python CLI with the arrow keys, be sure to
+install py-readline.
+
+### Certificates
+For python's urllib to be able to verify ssl certificates, be sure to install
+`security/ca-certificates` and `security/py-certify`. The pkgsrc version of python
+won't pick up on your distro's existing certificates.
 
 ## 4. Audit all pkgsrc software on machine
 ```
