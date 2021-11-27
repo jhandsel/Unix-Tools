@@ -141,6 +141,10 @@ PYTHON_VERSION_DEFAULT=39
 Change 39 to whatever version of python you want. When you build python modules (eg pip),
 `bmake` will build for the desired version of python.
 
+### py-readline
+If you want to be able to navigate the python CLI with the arrow keys, be sure to
+install py-readline.
+
 ### Build a package for a different version of python
 It is possible to temporarily set the python version when building a package.
 First clean out any previous builds of package and its dependencies:
