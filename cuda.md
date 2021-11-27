@@ -41,6 +41,13 @@ it before continuing. You can check the install/uninstall logs at:
 ```
 less /var/log/nvidia-installer.log
 less /var/log/nvidia-uninstall.log
+```
+
+Don't forget to add CUDA to your path:
+```
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64
+```
 
 ## cudNN
 The cudNN library is needed to run deep learning frameworks like
