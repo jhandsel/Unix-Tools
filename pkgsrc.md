@@ -35,11 +35,15 @@ installs the pkgsrc binaries to `$PREFIX/pkg`:
 cd pkgsrc/bootstrap
 ./bootstrap --abi 64 --make-jobs 4 --prefix $PREFIX/pkg --prefer-pkgsrc yes
 ```
-The `--abi 64` options means compile with 64 bit address space enabled. 
-The `--prefer-pkgsrc yes` option makes pkgsrc use its own libraries rather than the native
-libraries already on the machine.
+- The `--abi 64` options means compile with 64 bit address space enabled. 
+- The `--prefer-pkgsrc yes` option makes pkgsrc use its own libraries rather than the native
+libraries already on the machine. This is the safer option, although pkgsrc will need to
+compile many more libraries to get things up and running.
 
 ### If using a binary distribution from Joyent
+I don't recommend this, unless you have one of the versions of Red Hat that
+Joyent compiled the packages for.
+
 Bootstrap with the tarball from [Joyent](https://pkgsrc.joyent.com/) to 
 gain access to their binary packages. Install packages with `pkgin` according to Joyent's
 website.
