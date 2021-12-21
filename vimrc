@@ -1,11 +1,11 @@
 " Plugins
-" - ale
-" - commentary
-" - jedi-vim
-" - vim-mucomplete
-" - vim-python-pep8-indent
-" - vim-repl
-" - vim-tmux-navigator
+" - ale (linting)
+" - commentary (commenting/uncommenting)
+" - jedi-vim (autocompletion and definition navigation)
+" - vim-mucomplete (remap autocomplete to tab)
+" - vim-python-pep8-indent (auto-indenting when split line in parenthesis)
+" - vim-repl (open a repl)
+" - vim-tmux-navigator (integrate vim and tmux navigation)
 
 " Pretty editor
 syntax enable
@@ -23,7 +23,6 @@ set colorcolumn=100
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
-
 
 " Default to UTF-8
 set encoding=utf-8
