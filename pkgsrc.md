@@ -38,7 +38,8 @@ cd pkgsrc/bootstrap
 - The `--abi 64` options means compile with 64 bit address space enabled. 
 - The `--prefer-pkgsrc yes` option makes pkgsrc use its own libraries rather than the native
 libraries already on the machine. This is the safer option, although pkgsrc will need to
-compile many more libraries to get things up and running.
+compile many more libraries to get things up and running. While it is tempting to set this
+option to `no`, doing so can get you into dependency hell.
 
 ### If using a binary distribution from Joyent
 I don't recommend this, unless you have one of the versions of Red Hat that
@@ -142,13 +143,19 @@ MAKE_JOBS=4
 ```
 
 ## 3. Set up Python
+### Different versions of python
+Different versions are available in `$PREFIX/pkgsrc/lang/pythonXX`.
+
 ### Set default python version
+In order for other packages (eg pip) to be compiled for a specific
+python version, you need to set the default python version.
+
 Add the following to `mk.conf`:
 ```
 PYTHON_VERSION_DEFAULT=39
 ```
 
-Change 39 to whatever version of python you want. When you build python modules (eg pip),
+Change 39 to whatever version of python you want. When you build python modules,
 `bmake` will build for the desired version of python.
 
 ### Build a package for a different version of python
