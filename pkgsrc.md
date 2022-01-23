@@ -111,7 +111,6 @@ bmake install
 Navigate to the package to update and run:
 ```
 bmake update
-bmake install
 ```
 
 ### Checking dependencies
