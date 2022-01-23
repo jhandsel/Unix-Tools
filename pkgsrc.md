@@ -107,6 +107,13 @@ bmake
 bmake install
 ```
 
+### Updating packages (and dependencies)
+Navigate to the package to update and run:
+```
+bmake update
+bmake install
+```
+
 ### Checking dependencies
 To show a list of dependencies for the current package:
 ```
