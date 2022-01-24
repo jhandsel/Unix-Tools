@@ -58,12 +58,12 @@ VERIFIED_INSTALLATION=never
 
 ### Add pkgsrc binary folders to path
 
-For macOS:
+If using `/opt` prefix:
 ```
 export PATH=/opt/pkg/sbin:/opt/pkg/bin:$PATH
 export MANPATH=/opt/pkg/man:$MANPATH
 ```
-For Linux:
+If using `/usr` prefix (needed when using Joyent):
 ```
 export PATH=/usr/pkg/sbin:/usr/pkg/bin:$PATH
 export MANPATH=/usr/pkg/man:$MANPATH
