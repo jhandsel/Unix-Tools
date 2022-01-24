@@ -9,13 +9,6 @@ Binary packages are also available as an add-on from Joyent.
 (The exact prefix only matters if you're planning on installing binary packages from joyent's
 repository, as these have a hard-coded location.)
 
-macOS:
-```
-export PREFIX=/opt
-```
-
-Linux:
-macOS:
 ```
 export PREFIX=/opt
 ```
