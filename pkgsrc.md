@@ -10,8 +10,10 @@ Binary packages are also available as an add-on from Joyent.
 repository, as these have a hard-coded location.)
 
 ```
-export PREFIX=/opt
+export PREFIX=/usr
 ```
+
+If not using Joyent's packages, you may prefer to use `PREFIX=/opt`.
 
 ### Download the source tarball
 Decompress to your chosen prefix.
@@ -35,14 +37,13 @@ compile many more libraries to get things up and running. While it is tempting t
 option to `no`, doing so can get you into dependency hell.
 
 ### If using a binary distribution from Joyent
-I don't recommend this, unless you have one of the versions of Red Hat that
-Joyent compiled the packages for.
+This is a useful option if you are having trouble compiling a specific binary.
 
 Bootstrap with the tarball from [Joyent](https://pkgsrc.joyent.com/) to 
 gain access to their binary packages. Install packages with `pkgin` according to Joyent's
 website.
 
-If you are also going to be compiling packages, you will need to edit `$PREFIX/pkg/etc/pkg_install.conf`.
+If you are also going to be compiling packages, you will need to edit `/usr/pkg/etc/pkg_install.conf`.
 The default setup is to verify every binary with gpg. Your own compiled binaries will have no gpg key,
 and the default will totally block their installation. The following change will prompt you when you
 try to install unsigned binaries:
