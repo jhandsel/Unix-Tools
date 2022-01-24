@@ -206,10 +206,14 @@ bmake install PYTHON_VERSION_DEFAULT=27
 
 ### Managing alternatives
 Sometimes you want `python` to point to `python2.7` and `python3` to point
-to the desired version of Python 3.
+to the desired version of Python 3. This is the case in Slackware where
+the default python is still 2.7 (as of Jan 2022).
 
-The package `pkg_alternatives` can be installed to deal with alternatives
-(eg python 3.7, python 3.8, python 3.9):
+If you install python3 with pkgsrc, it sets `$PREFIX/pkg/bin/python` to point
+to python3. This risks causing a problem if your system expects `python` to
+point to python2.
+
+The package `pkg_alternatives` can be installed to deal with alternatives:
 ```
 cd pkgsrc/pkgtools/pkg_alternatives
 bmake
@@ -224,10 +228,9 @@ You can list all packages that can be set as alternatives:
 pkg_alternatives list
 ```
 
-To set up specific links to different python versions:
+To link pkgsrc's `python` to the system version of python2:
 ```
-pkg_alternatives -w manual bin/python /opt/pkg/bin/python2.7
-pkg_alternatives -w manual bin/python3 /opt/pkg/bin/python3.9
+pkg_alternatives -w manual bin/python /usr/bin/python2.7
 ```
 
 Alternatively, both `python` and `python3` can be set to point to the
