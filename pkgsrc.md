@@ -70,7 +70,12 @@ export MANPATH=/usr/pkg/man:$MANPATH
 ```
 
 ### Configure pkgsrc
-Configure pkgsrc by modifying `$PREFIX/pkg/etc/mk.conf`. (The defaults are normally fine.)
+Configure pkgsrc by modifying `$PREFIX/pkg/etc/mk.conf`.
+
+The defaults are usually fine, but it's useful to set the number of make jobs: 
+```
+MAKE_JOBS=4
+```
 
 Fetch package vulnerabilities so that `bmake` can check them when compiling. This should be re-run periodically.
 ```
@@ -128,12 +133,6 @@ bmake show-options
 To set options, add a line to `$PREFIX/pkg/etc/mk.conf`. Options with '-' before are disabled. Eg:
 ```
 PKG_OPTIONS.vim= python -ruby
-```
-
-### Set number of bmake jobs
-Add the number of desired jobs to `mk.conf`:
-```
-MAKE_JOBS=4
 ```
 
 ## 3. Set up Python
