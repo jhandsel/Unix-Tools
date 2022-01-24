@@ -94,7 +94,47 @@ SU_CMD=        ${LOCALBASE}/bin/sudo /bin/sh -c
 
 Alternatively, just point `SU_CMD` to the `sudo` that came with your distro.
 
-## 2. Compiling packages from source
+## 2. Set up GCC
+The default behavior in pkgsrc is to use the system's base version of gcc to
+compile software. This may be a problem if your system's version of gcc is
+old. NetBSD 9.0 includes GCC 7, so if your base version of gcc is older than
+this you might want to upgrade the version of gcc used by pkgsrc.
+
+If you decide to upgrade pkgsrc's version of gcc, this should be the first
+thing you do. It's a very bad idea to upgrade it later. According to NetBSD's
+wiki:
+- While C packages can be built with mixed versions, the binary should be linked
+with the higher version because the support library is backwards compatible but 
+not forward compatible.
+- C++ packages that are linked together should be built with the same compiler, 
+because the standard library ABI is not necessarily the same for each compiler
+version
+
+First, bootstrap the desired version of GCC by compiling it with your
+system-base version of GCC:
+
+```
+cd $PREFIX/pkgsrc/lang/gcc7
+bmake
+bmake install
+```
+
+Any dependencies will be installed in bootstrap mode, and will only be used
+as dependencies for gcc.
+
+Then, edit `$PREFIX/etc/mk.conf` and set the minimum gcc version:
+```
+GCC_REQD= 7
+```
+
+NOTE: when pkgsrc installs an upgraded version of GCC, it puts it at
+`$PREFIX/pkg/gcc/bin`, which is not automatically added to the path. 
+Pkgsrc knows to find it here, but when doing anything outside pkgsrc,
+you still get the system's base version of gcc. It is not recommended
+to add the new gcc to your path as the default version, as this can cause
+problems with inconsistent versioning when compiling software outside of pkgsrc.
+
+## 3. Compiling packages from source
 ### Basic compiling
 To compile from source, use `bmake`. First find where the source is located, eg:
 ```
@@ -132,7 +172,8 @@ bmake show-options
 
 To set options, add a line to `$PREFIX/pkg/etc/mk.conf`. Options with '-' before are disabled. Eg:
 ```
-PKG_OPTIONS.vim= python -ruby
+PKG_OPTIONS.vim= python
+PKG_OPTIONS.python39= -x11
 ```
 
 ## 3. Set up Python
