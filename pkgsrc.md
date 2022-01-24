@@ -176,7 +176,7 @@ PKG_OPTIONS.vim= python
 PKG_OPTIONS.python39= -x11
 ```
 
-## 3. Set up Python
+## 4. Set up Python
 ### Different versions of python
 Different versions are available in `$PREFIX/pkgsrc/lang/pythonXX`.
 
@@ -248,7 +248,7 @@ For python's urllib to be able to verify ssl certificates, be sure to install
 `security/ca-certificates` and `security/py-certify`. The pkgsrc version of python
 won't pick up on your distro's existing certificates.
 
-## 4. Audit all pkgsrc software on machine
+## 5. Audit all pkgsrc software on machine
 ```
 pkg_admin fetch-pkg-vulnerabilities
 pkg_admin audit
