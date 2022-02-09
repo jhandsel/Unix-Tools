@@ -176,6 +176,16 @@ PKG_OPTIONS.vim= python
 PKG_OPTIONS.python39= -x11
 ```
 
+### List installed packages
+```
+pkg_info
+```
+
+### Uninstall package
+```
+pkg_delete <package name>
+```
+
 ## 4. Set up Python
 ### Different versions of python
 Different versions are available in `$PREFIX/pkgsrc/lang/pythonXX`.
