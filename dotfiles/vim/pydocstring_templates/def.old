@@ -1,0 +1,22 @@
+"""{{ name }}
+
+{% for p in params -%}
+{% if p.annotation -%}
+:param {{ p.annotation }} {{ p.argument}}:
+{% else -%}
+:param {{ p.argument }}:
+{% endif -%}
+{% endfor -%}
+
+{% if exceptions -%}
+{% for e in exceptions -%}
+:raise {{ e }}:
+{% endfor -%}
+{% endif -%}
+
+:return:
+{% if return_type -%}
+:rtype: {{ return_type }}
+{% endif -%}
+
+"""
