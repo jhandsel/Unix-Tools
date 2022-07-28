@@ -3,8 +3,7 @@
 " - commentary (commenting/uncommenting)
 " - vim-mucomplete (tab completion and autocomplete)
 " - vim-python-pep8-indent (auto-indenting when split line in parenthesis)
-" - vim-pydocstring [removed for testing DOGE] (auto python docstring)
-" - DOGE (auto docstring)
+" - vim-pydocstring (auto python docstring)
 " - vim-repl (open a repl)
 " - vim-tmux-navigator (integrate vim and tmux navigation)
 " - tagbar (class and method table)
@@ -152,10 +151,6 @@ autocmd Filetype python nnoremap <buffer> <F5> <Esc>:w<CR>:!clear;python3 %<CR>
 autocmd Filetype python xnoremap <buffer> <F5> :w !python3<CR>
 
 " F6 to run python script interactively
-" Using vim-repl
-autocmd Filetype python nnoremap <silent>
-    \ <buffer> <expr> <F6> repl#REPLIsVisible() ? ':REPLSendAll<CR>' 
-    \ : ':REPLToggle<CR> :REPLSendAll<CR>'
 " autocmd Filetype python nnoremap <silent>
 "     \ <buffer> <F6> <Esc>:w<CR>:terminal++close python3 -i %<CR>
 
@@ -191,7 +186,7 @@ let g:ale_fixers = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mu complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menuone,preview,longest
+set completeopt=menuone,popup,longest
 " Don't show completion messages at bottom of screen
 set shortmess+=c
 " Auto suggestions popup in Python
@@ -199,7 +194,6 @@ autocmd FileType python set completeopt-=longest
 autocmd FileType python set completeopt+=noselect
 autocmd FileType python silent MUcompleteAutoOn
 autocmd FileType * if &ft!="python"|silent MUcompleteAutoOff|endif
-" autocmd BufRead,BufNewFile *.py let g:mucomplete#enable_auto_at_startup = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim repl
@@ -218,11 +212,23 @@ let g:repl_sendvariable_template = {
 let g:sendtorepl_invoke_key = '<leader>e'
 " Toggle REPL
 nnoremap <leader>t :REPLToggle<Cr>
+" Hack to make ipython work properly
+let g:repl_ipython_version = '7'
+" Copy repl output to register 't'
+let g:repl_output_copy_to_register = 't'
+" Run entire file
+autocmd Filetype python nnoremap <silent>
+    \ <buffer> <expr> <leader>r repl#REPLIsVisible() ? ':REPLSendAll<CR>' 
+    \ : ':REPLToggle<CR> :REPLSendAll<CR>'
+" Set breakpoint at current line and run script
+autocmd Filetype python nnoremap <leader>b <Esc>:REPLDebugStopAtCurrentLine<Cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" DOGE
+" vim-pydocstring
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:doge_mapping = '<leader>d'
+autocmd FileType python nmap <buffer> <silent> <leader>d <Plug>(pydocstring)
+let g:pydocstring_templates_path = '~/.vim/pydocstring_templates'
+let g:pydocstring_enable_mapping = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
