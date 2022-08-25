@@ -1,5 +1,22 @@
 # Python's Plotting Library
 
+## Install New Font in MacOS
+- Install `.ttf` or `.otf` font in Finder by double clicking
+- Rebuild the font cache with `fc-cache -v -f`
+- Remove Matplotlib's font cache rm -rf `~/.cache/fontconfig`
+- Remove any further font information in `~/.matplotlib`
+- Open python terminal
+- Check font installed by running:
+```
+import matplotlib.font_manager as fm
+[f.name for f in fm.fontManager.ttflist if '<my_font_name>' in f.name.lower()]
+```
+- Use the name from `name` field to activate the font:
+```
+from matplotlib import pyplot as plt
+plt.rcParams['font.family'] = "<Font Name>"
+```
+
 ## Import matplotlib
 ```
 import matplotlib.pyplot as plt
