@@ -1,29 +1,52 @@
-" Plugins
-" - ale (linting)
-" - commentary (commenting/uncommenting)
-" - vim-mucomplete (tab completion and autocomplete)
-" - vim-python-pep8-indent (auto-indenting when split line in parenthesis)
-" - vim-pydocstring (auto python docstring)
-" - vim-repl (open a repl)
-" - vim-tmux-navigator (integrate vim and tmux navigation)
-" - tagbar (class and method table)
-" - pydoc from somini (better python help pages)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugins
+Plugin 'dense-analysis/ale'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+Plugin 'preservim/tagbar'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'heavenshell/vim-pydocstring'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'sillybun/vim-repl'
+Plugin 'github/copilot.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pretty editor
-syntax enable
-filetype on
-filetype plugin indent on
-set autoindent
+" syntax enable
+" filetype on
+" filetype plugin indent on
+" set autoindent
 
 " Default to UTF-8
 set encoding=utf-8
 
 " Sane editing
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-" set colorcolumn=80
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
+" set expandtab
 set colorcolumn=100
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
@@ -33,7 +56,7 @@ autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 set ignorecase
 set smartcase
 set hlsearch
-"set incsearch
+set incsearch
 
 " Toggle line numbers and sign column (shows error annotations) with F2
 set number
@@ -72,14 +95,17 @@ set cmdheight=2
 " Disable backups (otherwise get tilde files everywhere)
 set nobackup
 
-" Use enter to create new lines w/o entering insert mode
-nnoremap <CR> o<Esc>
-" Below is to fix issues with the ABOVE mapping in quickfix window
-autocmd CmdwinEnter * nnoremap <CR> <CR>
-autocmd BufReadPost quickfix nnoremap <CR> <CR>
+" " Use enter to create new lines w/o entering insert mode
+" nnoremap <CR> o<Esc>
+" " Below is to fix issues with the ABOVE mapping in quickfix window
+" autocmd CmdwinEnter * nnoremap <CR> <CR>
+" autocmd BufReadPost quickfix nnoremap <CR> <CR>
 
 """ Fix yaml formatting
 autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+
+""" Use system clipboard
+set clipboard=unnamed
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Navigation
@@ -88,11 +114,19 @@ autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 set splitbelow
 set splitright
 
-" Enable vim-tmux-navigator in vim's terminal
-tnoremap <silent> <C-j> <C-w>:TmuxNavigateDown<cr>
-tnoremap <silent> <C-k> <C-w>:TmuxNavigateUp<cr>
-tnoremap <silent> <C-h> <C-w>:TmuxNavigateLeft<cr>
-tnoremap <silent> <C-l> <C-w>:TmuxNavigateRight<cr>
+" " Enable vim-tmux-navigator in vim's terminal
+" tnoremap <silent> <C-j> <C-w>:TmuxNavigateDown<cr>
+" tnoremap <silent> <C-k> <C-w>:TmuxNavigateUp<cr>
+" tnoremap <silent> <C-h> <C-w>:TmuxNavigateLeft<cr>
+" tnoremap <silent> <C-l> <C-w>:TmuxNavigateRight<cr>
+" Map C-movement to move between windows
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
+
+" Tap escape twice to scroll in terminal
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
@@ -107,6 +141,11 @@ nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
+" Use control to resize panes when in terminal
+tnoremap <silent> <C-Right> <C-w>:vertical resize +5<cr>
+tnoremap <silent> <C-Left> <C-w>:vertical resize -5<cr>
+tnoremap <silent> <C-Up> <C-w>:resize +5<cr>
+tnoremap <silent> <C-Down> <C-w>:resize -5<cr>
 
 " Remove banner from file browser
 let g:netrw_banner = 0
@@ -130,8 +169,6 @@ nnoremap <space> za
 " Enable all python syntax
 let python_highlight_all = 1
 
-" Use python omnicomplete
-autocmd FileType python set omnifunc=python3complete#Complete
 " Close preview window when leave insert mode
 "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
@@ -155,45 +192,120 @@ autocmd Filetype python xnoremap <buffer> <F5> :w !python3<CR>
 "     \ <buffer> <F6> <Esc>:w<CR>:terminal++close python3 -i %<CR>
 
 " Wrap comments
-autocmd FileType python set textwidth=72
+autocmd FileType python set textwidth=80
 autocmd FileType python set formatoptions-=t
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PyDoc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pydoc_cmd='python3 -m pydoc'
-let g:pydoc_detect_version=0
-let g:pydoc_open_cmd = 'new'
+" let g:pydoc_cmd='python3 -m pydoc'
+" let g:pydoc_detect_version=0
+" let g:pydoc_open_cmd = 'new'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-lsp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('pylsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+" if executable('jedi-language-server')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'jedi-language-server',
+"         \ 'cmd': {server_info->['jedi-language-server']},
+"         \ 'allowlist': ['python'],
+"         \ })
+" endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+let g:lsp_diagnostics_enabled = 0
+
+" Disable if other plugins get buggy - consider adding asynccomplete
+" to automatically open completions
+let g:lsp_async_completion = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " To check everything is working, call :ALEInfo
-let g:ale_linters = {'python': ['pylint', 'mypy', 'pycodestyle', 'pydocstyle']}
-let g:ale_python_mypy_show_notes = 0
-let g:ale_python_mypy_options = '--ignore-missing-imports --show-error-codes'
-" let g:ale_python_pycodestyle_options = '--config=.pycodestyle'
-" Leave languge server protocol to coc.nvim
+" let g:ale_linters = {'python': ['pylint', 'mypy', 'pycodestyle', 'pydocstyle']}
+let g:ale_linters = {'python': ['ruff', 'mypy']}
 let g:ale_disable_lsp = 1
 " Lint error navigation
 nmap <silent> ]e :ALENext <CR>
 nmap <silent> [e :ALEPrevious <CR>
 " Enable basic fixers
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
+let g:ale_fixers = {'python': ['ruff']}
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \}
+let g:ale_python_pylsp_config={'pylsp': {
+  \ 'plugins': {
+  \   'autopep8': {'enabled': v:false},
+  \   'flake8': {'enabled': v:false},
+  \   'mccabe': {'enabled': v:false},
+  \   'pycodestyle': {'enabled': v:false},
+  \   'pyflakes': {'enabled': v:false},
+  \   'pydocstyle': {'enabled': v:false},
+  \   'pylint': {'enabled': v:false},
+  \   'yapf': {'enabled': v:false},
+  \ },
+  \ }}
+" Hack to make ale hover hint stay around
+" augroup HoverAfterComplete
+"     autocmd!
+"     " display argument list of the selected completion candidate using ALEHover
+"     autocmd User ALECompletePost ALEHover
+"     augroup END
+" let g:ale_completion_enabled = 1
+" set omnifunc=ale#completion#OmniFunc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mu complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menuone,popup,longest
-" Don't show completion messages at bottom of screen
-set shortmess+=c
-" Auto suggestions popup in Python
-autocmd FileType python set completeopt-=longest
-autocmd FileType python set completeopt+=noselect
-autocmd FileType python silent MUcompleteAutoOn
-autocmd FileType * if &ft!="python"|silent MUcompleteAutoOff|endif
+" set completeopt=menuone,popup,longest
+" " Don't show completion messages at bottom of screen
+" set shortmess+=c
+" " Auto suggestions popup in Python
+" autocmd FileType python set completeopt-=longest
+" autocmd FileType python set completeopt+=noselect
+" autocmd FileType python silent MUcompleteAutoOn
+" autocmd FileType * if &ft!="python"|silent MUcompleteAutoOff|endif
+" let g:mucomplete#chains = {
+"             \ 'vim': ['path', 'cmd', 'keyn'],
+"             \ 'default': ['path', 'keyn', 'dict', 'uspl']
+"             \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim repl
@@ -212,6 +324,8 @@ let g:repl_sendvariable_template = {
 let g:sendtorepl_invoke_key = '<leader>e'
 " Toggle REPL
 nnoremap <leader>t :REPLToggle<Cr>
+" Open REPL on right hand side
+let g:repl_position = 3
 " Hack to make ipython work properly
 let g:repl_ipython_version = '7'
 " Copy repl output to register 't'
@@ -234,4 +348,6 @@ let g:pydocstring_enable_mapping = 0
 " Tagbar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_ctags_bin = "/opt/local/bin/uctags"
-nnoremap <leader>n :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_autofocus = 1
+nnoremap <leader>c :TagbarToggle<CR>
