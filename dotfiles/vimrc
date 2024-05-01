@@ -54,6 +54,7 @@ set colorcolumn=100
 autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Make searching better
 set ignorecase
@@ -103,9 +104,6 @@ set nobackup
 " " Below is to fix issues with the ABOVE mapping in quickfix window
 " autocmd CmdwinEnter * nnoremap <CR> <CR>
 " autocmd BufReadPost quickfix nnoremap <CR> <CR>
-
-""" Fix yaml formatting
-autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
 
 """ Use system clipboard
 set clipboard=unnamed
