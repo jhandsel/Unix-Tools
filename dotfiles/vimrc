@@ -21,6 +21,8 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'preservim/tagbar'
 Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'heavenshell/vim-pydocstring'
 Plugin 'Vimjas/vim-python-pep8-indent'
@@ -254,7 +256,7 @@ let g:lsp_diagnostics_enabled = 0
 
 " Disable if other plugins get buggy - consider adding asynccomplete
 " to automatically open completions
-let g:lsp_async_completion = 1
+" let g:lsp_async_completion = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
@@ -352,3 +354,9 @@ let g:tagbar_ctags_bin = "/opt/local/bin/uctags"
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 nnoremap <leader>c :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copilot
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <silent><script><expr> <C-n> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
