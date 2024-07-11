@@ -44,6 +44,11 @@ filetype plugin indent on    " required
 
 " Default to UTF-8
 set encoding=utf-8
+" cp932 is MS extension of sjis
+set fileencodings=ucs-bom,utf-8,default,cp932,latin1
+
+" Don't reload file if it changes outside of vim
+set noautoread
 
 " Sane editing
 " set tabstop=4
@@ -230,7 +235,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
+    " nmap <buffer> gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>rn <plug>(lsp-rename)
     " nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     " nmap <buffer> ]g <plug>(lsp-next-diagnostic)
